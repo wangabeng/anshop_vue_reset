@@ -43,7 +43,9 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    // assetsPublicPath: '/',
+    // 改成相对路径 解决打包后js css等文件引用路径报错问题
+    assetsPublicPath: './',
 
     /**
      * Source Maps

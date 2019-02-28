@@ -107,20 +107,69 @@ import $ from 'jquery
 ```
 
 # 安装sass
-安装sass的依赖包
+1 安装sass的依赖包  
 ```
 npm install --save-dev sass-loader
 //sass-loader依赖于node-sass
 npm install --save-dev node-sass
 ```
-在build文件夹下的webpack.base.conf.js的rules里面添加配置
-```
-      {
-         test: /\.sass$/,
-         loaders: ['style', 'css', 'sass']
-      }
-```
+2  
 在组件中使用(lang="scss" 而不是sass)
 ```
 <style scoped lang="scss">
 ```
+3 出现的问题 图标是个框框 无法正常显示  
+出现的原因，是因为路径引用的原因：(参照https://blog.csdn.net/mxf_bear/article/details/80505295)   
+```
+These relative modules were not found:
+
+* ./common/.fonts/fontawesome-webfont.eot in ./node_modules/_css-loader@0.28.11@css-loader?{"sourceMap":true}!
+```
+  
+解决步骤：
+1 awesome.scss中url路径修改 ../fonts 改为 common/fonts 
+```
+url('common/fonts/fontawesome-webfont.eot?v=4.7.0')
+```
+同时需要在webpack.base.conf.js修改配置别名
+```
+  'src': resolve('src'),
+  'common': resolve('src/common'),
+```
+2 build/utils.js中添加 publicPath: '../../'  
+```
+    if (options.extract) {
+      return ExtractTextPlugin.extract({
+        use: loaders,
+        fallback: 'vue-style-loader',
+        publicPath: '../../' //解决打包后字体文件路径错误问题
+      })
+    } else {
+      return ['vue-style-loader'].concat(loaders)
+    }
+```
+
+# 关于打包后js css等文件路径报错问题解决  
+config/index.js中
+```
+assetsPublicPath: './', // 改为相对路径
+```
+
+# 小结 项目中关于路径的基本配置  
+1 config/index.js中
+```
+assetsPublicPath: './', // 改为相对路径
+```
+2 build/utils.js中添加 publicPath: '../../'  
+```
+    if (options.extract) {
+      return ExtractTextPlugin.extract({
+        use: loaders,
+        fallback: 'vue-style-loader',
+        publicPath: '../../' //解决打包后字体文件路径错误问题
+      })
+    } else {
+      return ['vue-style-loader'].concat(loaders)
+    }
+```
+
