@@ -5,6 +5,10 @@ import Vue from 'vue'
 import $ from 'jquery'
 import App from './App'
 import router from './router'
+// rem布局字体自适应
+import fontSize from './common/js/fontSize'
+
+import 'common/sass/index.scss'
 
 Vue.config.productionTip = false
 
@@ -14,7 +18,7 @@ new Vue({
   router,
   components: { App },
   template: '<App/>',
-  created () {
-    console.log("ddd");
+  mounted () {
+    fontSize(); // 自适应rem布局
   }
 })
