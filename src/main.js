@@ -13,5 +13,8 @@ new Vue({
   el: '#app',
   router,
   components: { App },
-  template: '<App/>'
+  template: '<App/>',
+  created () {
+    console.log("ddd");
+  }
 })

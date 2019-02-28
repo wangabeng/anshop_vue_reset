@@ -1,0 +1,90 @@
+// 颜色定义规范
+// $color-background: #fff;
+// $color-background-d: rgba(0, 0, 0, 0.3);
+// $color-highlight-background: #333;
+// $color-dialog-background: #666;
+// $color-theme: #ffcd32;
+// $color-theme-d: rgba(255, 205, 49, 0.5);
+// 主题色 紫色
+$color-sub-red: #de1573;
+
+// 主题色 浅色 
+$color-sub-red-light: #ea62a2;
+
+// 主题色 紫色补色 紫色
+$color-sub-purple: #9b59b6;
+
+// 主题色 补色 橙色
+$color-sub-red-l: #ff512f;
+$color-sub-orange: #ff512f;
+
+// 主题色 紫罗兰 (按钮色)
+$color-sub-pink: #de1573;
+
+// 主题色 紫罗兰 (按钮色 浅色)
+$color-sub-pink-light: #ffc1d6;
+
+// 深灰色按钮
+$color-button-d: #aeaeae;
+
+// 主题色 蓝色 
+$color-sub-blue: #3a97dd;
+
+// 淡灰色背景色
+$color-background-d: #f5f5f5;
+// 深灰色背景色
+$color-background-dd: #d6d6d6;
+// 基础背景
+$color-background: #fff;
+
+// 基础色字（苏桑儿定义）
+$color-text-basic-dark: #5f5f5f;
+
+// 基本字体色
+$color-text: rgb(31, 31, 31);
+
+// 灰色色字
+$color-text-d: #9e9e9e;
+
+
+// 深灰色色字
+$color-text-dd: #818181;
+// 基础色文字
+$color-text-basic: #333333;
+
+// 字体定义规范
+// 小号
+$font-size-small-s: .2rem;
+
+// 基本文本
+$font-size-small: .22rem;
+$font-size-small-x: .23rem;
+$font-size-medium: .24rem;
+$font-size-medium-x: .26rem;
+$font-size-large: .3rem;
+$font-size-large-x: .35rem;
+$font-size-large-xx: .5rem;
+
+// 普通圆角
+$border-radius-common: .05rem;
+$border-radius-medium: .1rem;
+$border-radius-large: .2rem;
+
+// 四周阴影
+$box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+
+// 1像素边框 淡灰色
+$border-1px: 1px solid rgba(0, 0, 0, .08);
+
+// 1像素边框 深灰色
+$border-1px-d: 1px solid rgba(0, 0, 0, .15);
+
+// 普通行高 .34rem
+$line-height: 1.4;
+
+// 底栏高
+$bottom-height: .8rem;
+
+// 主体内容预留padding
+$bottom-height-pad: 1rem;
+

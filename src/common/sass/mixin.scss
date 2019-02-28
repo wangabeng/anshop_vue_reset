@@ -1,0 +1,30 @@
+// 背景图片占满整个容器
+@mixin background_fill($url) {
+  background-image: url($url);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center center;
+}
+
+// 渐变按钮背景色
+@mixin background_orange_red() {
+  background: linear-gradient(left, $color-sub-orange, $color-sub-red);
+}
+
+// 单行文本溢出省略号 限定宽度 字面量不可以为100%
+@mixin single_txt($width) {
+  width: $width;
+  white-space: nowrap;overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// 单行文本溢出省略号$font_size .23rem, $line_height .3rem, $line_num 3行
+@mixin multi_txt($font_size, $line_height, $line_num) {
+  font-size: $font_size;
+  line-height: $line_height;
+  height: $line_height*$line_num;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $line_num;
+}

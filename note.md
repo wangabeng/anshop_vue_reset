@@ -172,4 +172,15 @@ assetsPublicPath: './', // 改为相对路径
       return ['vue-style-loader'].concat(loaders)
     }
 ```
+# package-lock.json和package.json
+在执行`npm install`的时候，就会在当前目录生成一个`package-lock.json`的文件。
+5.4.2版本后，如果改了package.json，且package.json和lock文件不同，那么执行`npm i`时npm会根据package中的版本号以及语义含义去下载最新的包，并更新至lock。如果两者是同一状态，那么执行`npm i `都会根据lock下载，不会理会package实际包的版本是否有新。
+
+# 使用vue-devtools调试
+1 在谷歌应用商店安装vue-devtools  
+2 打开谷歌开发者模式  
+更多工具 - 扩展程序 - 右上角 打开开发者模式  
+3 F12 右上角 vue 即可打开使用  
+
+
 

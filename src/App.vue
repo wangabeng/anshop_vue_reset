@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <!-- <router-view/> -->
-    <i class="fa fa-address-book" aria-hidden="true"></i>
   </div>
 </template>
 
@@ -12,10 +11,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "~common/sass/awesome.scss";
+@import "~common/sass/index.scss";
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  color: #2c3e50;
+  color: $color-sub-pink;
   margin-top: 60px;
   display: flex; 
 }
