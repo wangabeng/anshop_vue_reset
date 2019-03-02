@@ -129,7 +129,8 @@ These relative modules were not found:
 解决步骤：
 1 awesome.scss中url路径修改 ../fonts 改为 common/fonts 
 ```
-url('common/fonts/fontawesome-webfont.eot?v=4.7.0')
+// ~相对路径
+url('~common/fonts/fontawesome-webfont.eot?v=4.7.0')
 ```
 同时需要在webpack.base.conf.js修改配置别名
 ```
@@ -182,5 +183,17 @@ assetsPublicPath: './', // 改为相对路径
 更多工具 - 扩展程序 - 右上角 打开开发者模式  
 3 F12 右上角 vue 即可打开使用  
 
+# Vue.use(vueLazyload,{}) https://segmentfault.com/a/1190000012865122
 
-
+# npm 报错This is probably not a problem with npm. There is likely additional logging output above.
+可能由于种种版本更新的原因需要执行  
+```
+npm install
+```
+重新安装一次，如果还是不可以的话，在把之前装的都清空
+```
+rm -rf node_modules
+rm package-lock.json
+npm cache clear --force
+npm install
+```

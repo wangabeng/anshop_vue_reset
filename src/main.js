@@ -5,10 +5,16 @@ import Vue from 'vue'
 import $ from 'jquery'
 import App from './App'
 import router from './router'
+import store from './store'
 // rem布局字体自适应
 import fontSize from './common/js/fontSize'
 
 import 'common/sass/index.scss'
+
+// 全局路由守卫 有效 
+// router.afterEach((to, from) => {
+//   console.log('全局守卫 to, next', to, from);
+// })
 
 Vue.config.productionTip = false
 
@@ -16,6 +22,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>',
   mounted () {
