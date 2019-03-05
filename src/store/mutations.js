@@ -1,6 +1,6 @@
 const mutations = {
   ifShowFooter (state, msg) {
-    return state.ifShowFooter += msg;
+    state.ifShowFooter = msg;
   }
 }
 export default mutations

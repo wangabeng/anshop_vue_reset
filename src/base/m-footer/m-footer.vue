@@ -1,5 +1,5 @@
 <template>
-  <div class="m-footer">
+  <div class="m-footer" v-if='ifShowFooter'>
       <ul class='m-footer-nav'>
           <li class='m-footer-aboutus'>
               <router-link tag="a" to="/itemcenter">
@@ -30,7 +30,14 @@
 </template>
 
 <script type="text/ecmascript-6">
+  // 导入vuex
+  import {mapActions, mapGetters} from 'vuex'
   export default {
+    computed: {
+      ...mapGetters([
+        'ifShowFooter'
+      ])
+    }
   }
 </script>
 

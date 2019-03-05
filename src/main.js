@@ -12,9 +12,11 @@ import fontSize from './common/js/fontSize'
 import 'common/sass/index.scss'
 
 // 全局路由守卫 有效 
-// router.afterEach((to, from) => {
-//   console.log('全局守卫 to, next', to, from);
-// })
+router.beforeEach((to, from, next) => {
+  // console.log(next);
+  next(false);
+  console.log('after next');
+})
 
 Vue.config.productionTip = false
 

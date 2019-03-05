@@ -1,5 +1,5 @@
 
 const state = {
-  ifShowFooter: 0
+  ifShowFooter: true, // 是否显示footer
 }
 export default state

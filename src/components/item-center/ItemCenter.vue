@@ -13,26 +13,28 @@ import {mapActions, mapGetters} from 'vuex'
 export default {
   data () {
     return {
-      msg: -1
     }
   },
-  computed: mapGetters([
+  computed: {
+    ...mapGetters([
     'ifShowFooter'
-  ]),
+    ])
+  },
   methods: {
     ...mapActions([
       'changeifShowFooter',
     ]),
     addValue () {
-      this.changeifShowFooter('aaa');
+      this.changeifShowFooter(false);
     }
   },
   created () {
     // console.log("item created");
-    this.value = 5;
+    this.changeifShowFooter(false);
   },
   destroyed () {
     // console.log("item destoryed");
+    this.changeifShowFooter(true);
   },
 }
 </script>

@@ -17,11 +17,18 @@ export default new Router({
       //   // ...
       //   console.log(' itemcenter to, from, next', to, from, next);
       // }
+      meta: {
+          title: "HelloWorld", //    要现实的title
+          show: true   //             设置导航隐藏显示
+      }
     },
     {
       path: '/cart',
       name: 'Cart',
-      component: Cart
+      component: Cart,
+      meta: {
+        requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
+      }
     }
   ],
 
