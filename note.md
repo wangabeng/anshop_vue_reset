@@ -199,4 +199,93 @@ npm install
 ```
 
 # 前端实现登录拦截
-https://segmentfault.com/a/1190000008383094
+https://segmentfault.com/a/1190000008383094 (最完善)
+实现逻辑   
+## 一 路由拦截 
+通过vur-route的导航卫士监听 beforeEach监听to  
+首先判断即将进入的路由自定义参数是否需要登录验证
+1 if 如果需要登录验证  
+    if 如果在vuex中有保存token 则放行 next()  
+    else 如果没有token 则next跳转到login页面  
+2 else 如果不需要登录验证 则直接放行next()   
+
+代码如下：  
+1 路由配置  
+```
+const routes = [
+    {
+        path: '/',
+        name: '/',
+        component: Index
+    },
+    {
+        path: '/repository',
+        name: 'repository',
+        meta: {
+            requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
+        },
+        component: Repository
+    },
+    {
+        path: '/login',
+        name: 'login',
+        component: Login
+    }
+];
+``` 
+定义完路由后，我们主要是利用vue-router提供的钩子函数beforeEach()对路由进行判断。  
+```
+router.beforeEach((to, from, next) => {
+    if (to.meta.requireAuth) {  // 判断该路由是否需要登录权限
+        if (store.state.token) {  // 通过vuex state获取当前的token是否存在
+            next(); // 放行
+        }
+        else { // 如果token不存在 则跳转到login页面
+            next({
+                path: '/login',
+                query: {redirect: to.fullPath}  // 将跳转的路由path作为参数，登录成功后跳转到该路由
+            })
+        }
+    }
+    else { // 如果不需要登录权限
+        next(); // 直接放行
+    }
+})
+``` 
+
+## axios request和response拦截 
+要想统一处理所有http请求和响应，就得用上 axios 的拦截器。通过配置http response inteceptor，当后端接口返回401 Unauthorized（未授权），让用户重新登录。
+```
+// http request 拦截器
+axios.interceptors.request.use(
+    config => {
+        if (store.state.token) {  // 判断是否存在token，如果存在的话，则每个http header都加上token
+            config.headers.Authorization = `token ${store.state.token}`;
+        }
+        return config;
+    },
+    err => {
+        return Promise.reject(err);
+    });
+
+// http response 拦截器
+axios.interceptors.response.use(
+    response => {
+        return response;
+    },
+    error => {
+        if (error.response) {
+            switch (error.response.status) {
+                case 401:
+                    // 返回 401 清除token信息并跳转到登录页面
+                    store.commit(types.LOGOUT);
+                    router.replace({
+                        path: 'login',
+                        query: {redirect: router.currentRoute.fullPath}
+                    })
+            }
+        }
+        return Promise.reject(error.response.data)   // 返回接口返回的错误信息
+    });
+```   
+
