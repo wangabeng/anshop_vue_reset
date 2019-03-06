@@ -23,7 +23,7 @@
           </form>
 
            <!-- 手机登录 -->
-          <form class="login-form-wrapper phone-form" action='#' method='post' >
+          <form class="login-form-wrapper phone-form" @click.prevent="submit" method='post' >
               <label for="phone" class='each-input'>
                   <img src="./电话.png" alt="手机">
                   <input type="text" placeholder="请输入手机号" id='phone'>
@@ -60,15 +60,25 @@ export default {
   },
   computed: {
     ...mapGetters([
-    'ifShowFooter'
+    'ifShowFooter',
+    'token'
     ])
   },
   methods: {
     ...mapActions([
-      'changeifShowFooter',
+      'changeifShowFooter', // 没有成功获取
+      'addToken'
     ]),
     addValue () {
       this.changeifShowFooter(false);
+    },
+    submit () {
+      console.log('add');
+      // 改变vuex存储
+      this.addToken("ben");
+      setTimeout(function () {
+        console.log(this.ifShowFooter);
+      }, 110);
     }
   },
   created () {

@@ -292,3 +292,43 @@ axios.interceptors.response.use(
 # 重定向 不能触发beforeEach的问题
 比如 浏览器输入地址localhost:8080/ 使其重定向到localhost:8080/ 但是此时并没有触发路由的beforeEach。
 解决办法：挂载路由放到最后 就是说定义beforeEach要放在挂载路由之前。router.start(App, '#app')
+
+# vue派发表单提交submit事件
+```
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>helloform_Vue</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+    <div class="hello">
+        <ul>
+            <form @submit.prevent="submit">
+                <input type="text" name="name" v-model="inputtext.name">
+                <input type="password" name="password" v-model="inputtext.password">
+                <input type="submit" value="提交">
+            </form>
+        </ul>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '.hello',
+            data: {
+                
+                inputtext:{}
+            },
+            methods: {
+                submit: function() {
+                    console.log(this.inputtext);
+                }
+            },
+        })
+    </script>
+ 
+    </body>
+</html>
+
+```
