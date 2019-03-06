@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Index from '@/components/index/Index'
 import ItemCenter from '@/components/item-center/ItemCenter'
 import Cart from '@/components/cart/Cart'
+import Login from '@/components/login/Login'
 
 Vue.use(Router)
 
@@ -9,17 +11,25 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
+      path: '/',
+      redirect: '/index'
+    },
+    {
+      path: '/index',
+      name: 'Index',
+      component: Index,
+      meta: {
+        showFooter: true,  // 设置导航隐藏显示
+        requireAuth: true,
+      }
+    },
+    {
       path: '/itemcenter',
       name: 'ItemCenter',
       component: ItemCenter,
-      // 路由内导航卫士 只有在'/itemcenter/12 =》 '/itemcenter/34 这样跳转 才会触发
-      // beforeEnter: (to, from, next) => {
-      //   // ...
-      //   console.log(' itemcenter to, from, next', to, from, next);
-      // }
       meta: {
-          title: "HelloWorld", //    要现实的title
-          show: true   //             设置导航隐藏显示
+        show: true,  // 设置导航隐藏显示
+        requireAuth: true,
       }
     },
     {
@@ -28,6 +38,14 @@ export default new Router({
       component: Cart,
       meta: {
         requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
+      }
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login,
+      meta: {
+        showFooter: false // 如果此参数为false 则隐藏footer
       }
     }
   ],

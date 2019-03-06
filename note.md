@@ -289,3 +289,6 @@ axios.interceptors.response.use(
     });
 ```   
 
+# 重定向 不能触发beforeEach的问题
+比如 浏览器输入地址localhost:8080/ 使其重定向到localhost:8080/ 但是此时并没有触发路由的beforeEach。
+解决办法：挂载路由放到最后 就是说定义beforeEach要放在挂载路由之前。router.start(App, '#app')

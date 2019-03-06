@@ -16,12 +16,9 @@ export default {
   },
   watch: {
     $route(to, from, next){
-      // console.log('gaibian to', to);
-      // console.log(this.$route.path);
     }
   },
   created () {
-    // console.log("sexb", sexb);
   }
 }
 </script>
@@ -35,7 +32,7 @@ export default {
   flex-direction: column;
   width: 6.4rem;
   min-height: 100%;
-  background-color: $color-sub-red;
+  // background-color: $color-sub-red;
 }
 
 </style>
