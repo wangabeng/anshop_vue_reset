@@ -9,6 +9,10 @@ import store from './store'
 // rem布局字体自适应
 import fontSize from './common/js/fontSize'
 
+// axios
+import axios from 'axios'
+Vue.prototype.$http = axios
+
 import 'common/sass/index.scss'
 
 // 导入vuex
@@ -22,7 +26,6 @@ Vue.config.productionTip = false
 
 // 全局路由守卫 有效 
 router.beforeEach((to, from, next) => {
-    console.log("to", to);
     if (to.meta.requireAuth) {  // 判断该路由是否需要登录权限
         if (store.state.token) {  // 通过vuex state获取当前的token是否存在
             next(); // 放行 必须放行才能进入
@@ -39,8 +42,8 @@ router.beforeEach((to, from, next) => {
     }
 
     // 判断显示footer
-    if (to.meta.showFooter) {
-      console.log('store', store);
+    if (to.meta.showFooter) { // 更改
+      // 
     }
 
 })
@@ -63,6 +66,5 @@ new Vue({
   template: '<App/>',
   mounted () {
     fontSize(); // 自适应rem布局
-    console.log(this.token);
   }
 })

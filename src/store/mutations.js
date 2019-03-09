@@ -3,7 +3,7 @@ const mutations = {
     state.ifShowFooter = msg;
   },
   addToken (state, str) {
-    state.addToken = str;
+    state.token = str;
   },
   removeToken (state) {
     state.removeToken = '';

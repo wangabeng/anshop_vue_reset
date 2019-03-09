@@ -8,14 +8,14 @@
               <a href="javascript:;" class='password-login'>切换密码登录</a>
            </div>
            <!-- 密码登录 -->
-          <form class="login-form-wrapper password-form" action='#' method='post' style='display: none;'>
+          <form class="login-form-wrapper password-form" @submit.prevent="submit" method='post' style='display: none;'>
               <label for="username" class='each-input'>
                   <img src="./用户名.png" alt="用户名">
-                  <input type="text" placeholder="请输入用户名/微信号/手机号" id='username'>
+                  <input type="text" placeholder="请输入用户名/微信号/手机号" id='username' v-model='userName'>
               </label>
               <label for="password" class='each-input'>
                   <img src="./密码.png" alt="密码">
-                  <input type="password" placeholder="请输入密码" id='password'>
+                  <input type="password" placeholder="请输入密码" id='password' v-model='password'>
               </label>
 
               <input class='submit-btn' type="submit" value='提交'>
@@ -35,7 +35,6 @@
                       <input type="button" class='code-btn' value='获取验证码'>
                   </div>
               </label>
-
               <input class='submit-btn' type="submit" value='提交'>
 
           </form>
@@ -51,17 +50,20 @@
 
 <script>
 // 导入vuex
-import {mapActions, mapGetters} from 'vuex'
+import {mapActions, mapGetters} from 'vuex';
+import axios from 'axios';
 
 export default {
   data () {
     return {
+      userName: '',
+      password: ''
     }
   },
   computed: {
     ...mapGetters([
-    'ifShowFooter',
-    'token'
+      'ifShowFooter',
+      'token'
     ])
   },
   methods: {
@@ -73,13 +75,34 @@ export default {
       this.changeifShowFooter(false);
     },
     submit () {
-      console.log('add');
+      var _this = this;
       // 改变vuex存储
       this.addToken("ben");
-      setTimeout(function () {
-        console.log(this.ifShowFooter);
-      }, 110);
-    }
+      // this.$router.push('/');
+      // console.log('tab');
+      // 发送请求
+      this.postData();
+
+    },
+    postData () {
+      var _this = this;
+      let formData = {
+        userName: this.userName,
+        password: this.password,
+      };
+      console.log(formData);
+      axios.post('http://localhost:3000/anshopserve/login', {
+        params: formData
+      })
+      .then(function (response) {
+        console.log(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+
+    },
   },
   created () {
     // console.log("item created");
