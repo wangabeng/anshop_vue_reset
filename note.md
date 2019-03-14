@@ -333,4 +333,22 @@ axios.interceptors.response.use(
 
 ```
 
-# 使用axios
+# 使用axios发送post的请求的时候 出现跨域问题 解决方案(注 使用jquery不会出现post跨域问题 只要后端设置好了允许跨域)  
+参考 https://blog.csdn.net/zpf_nevergiveup/article/details/80461161
+步骤1 安装 npm install qs  
+步骤2 项目中引入 import qs from 'qs'  
+步骤3 
+```
+ axios.post('http://192.168.33.10:8009/api/token', 
+       qs.stringify({
+        email: email,
+        password: pass,
+      }))
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+
+      });
+```

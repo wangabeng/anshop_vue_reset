@@ -52,6 +52,7 @@
 // 导入vuex
 import {mapActions, mapGetters} from 'vuex';
 import axios from 'axios';
+ import qs from 'qs';
 
 export default {
   data () {
@@ -91,14 +92,12 @@ export default {
         password: this.password,
       };
       console.log(formData);
-      axios.post('http://localhost:3000/anshopserve/login', {
-        params: formData
-      })
+      axios.post('http://localhost:3000/anshopserve/login', qs.stringify(formData))
       .then(function (response) {
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch(function (error) {
-        console.log(error);
+        // console.log(error);
       });
 
 
